@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 
-export default function Header({ cart, removeFromCart, emptyCart }) {
+export default function Header({ cart, removeFromCart, emptyCart, increaseQuantity, decreaseQuantity }) {
     //state derivado
     const isEmpty = useMemo(() => cart.length === 0, [cart])
     const cartTotal = useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart])
@@ -49,6 +49,7 @@ export default function Header({ cart, removeFromCart, emptyCart }) {
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
+                                                                onClick={() => decreaseQuantity(guitar.id)}
                                                             >
                                                                 -
                                                             </button>
@@ -56,6 +57,7 @@ export default function Header({ cart, removeFromCart, emptyCart }) {
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
+                                                                onClick={() => increaseQuantity(guitar.id)}
                                                             >
                                                                 +
                                                             </button>
@@ -77,7 +79,7 @@ export default function Header({ cart, removeFromCart, emptyCart }) {
                                     </>
                                 )}
 
-                                <button className="btn btn-dark w-100 mt-3 p-2" onClick={emptyCart()}>Vaciar Carrito</button>
+                                <button className="btn btn-dark w-100 mt-3 p-2" onClick={emptyCart}>Vaciar Carrito</button>
                             </div>
                         </div>
                     </nav>
